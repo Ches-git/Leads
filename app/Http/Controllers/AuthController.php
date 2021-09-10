@@ -20,16 +20,14 @@ class AuthController extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ]);
+        $tokenRequest = Request::create(
+            "http://127.0.0.1:8000/oauth/token",
+            'post'
+        );
 
-//        $tokenRequest = Request::create(
-//            "https://todolist12-oncymstoua-uc.a.run.app/oauth/token",
-//            'post'
-//        );
+        $response = Route::dispatch($tokenRequest);
 
-//        $response = Route::dispatch($tokenRequest);
-
-//        return $response;
-        return 'yeah';
+        return $response;
     }
 
     public function register(Request $request)
