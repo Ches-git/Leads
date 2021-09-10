@@ -21,7 +21,7 @@ class AuthController extends Controller
             'password' => $request->password,
         ]);
         $tokenRequest = Request::create(
-            "http://127.0.0.1:8000/oauth/token",
+            "https://todolist12-oncymstoua-uc.a.run.app/oauth/token",
             'post'
         );
 
