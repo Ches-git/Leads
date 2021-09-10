@@ -16,5 +16,5 @@ RUN cd /app && \
 RUN chown -R www-data: /app
 
 #RUN -e PORT=80 -p 80:80
-EXPOSE 80
+#EXPOSE 80
 CMD sh /app/docker/startup.sh
