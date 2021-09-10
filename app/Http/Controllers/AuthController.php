@@ -11,23 +11,24 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $http = new \GuzzleHttp\Client;
-
-        $request->request->add([
-            'grant_type' => 'password',
-            'client_id' => config('services.passport.client_id'),
-            'client_secret' => config('services.passport.client_secret'),
-            'username' => $request->username,
-            'password' => $request->password,
-        ]);
-        $tokenRequest = Request::create(
-            "http://127.0.0.1:8000/oauth/token",
-            'post'
-        );
-
-        $response = Route::dispatch($tokenRequest);
-
-        return $response;
+//        $http = new \GuzzleHttp\Client;
+//
+//        $request->request->add([
+//            'grant_type' => 'password',
+//            'client_id' => config('services.passport.client_id'),
+//            'client_secret' => config('services.passport.client_secret'),
+//            'username' => $request->username,
+//            'password' => $request->password,
+//        ]);
+//        $tokenRequest = Request::create(
+//            "http://127.0.0.1:8000/oauth/token",
+//            'post'
+//        );
+//
+//        $response = Route::dispatch($tokenRequest);
+//
+//        return $response;
+        return 'yes';
     }
 
     public function register(Request $request)
