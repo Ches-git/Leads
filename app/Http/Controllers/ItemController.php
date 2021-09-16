@@ -18,6 +18,11 @@ class ItemController extends Controller
         return Item::where('user_id', auth()->user()->id)->get();
     }
 
+    public function findTodo($id){
+        $userId = auth()->user()->id;
+        return Item::where('user_id', "=", $userId)->where('id', '=', $id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

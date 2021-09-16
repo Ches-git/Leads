@@ -39,6 +39,8 @@ Route::middleware('auth:api')->group(function () {
 
     //todos
     Route::get('/items', [ItemController::class, 'index']);
+    Route::get('/item/{id}', [ItemController::class, 'findTodo']);
+
     Route::post('/item/store', [ItemController::class, 'store']);
     Route::put('/item/{id}', [ItemController::class, 'update']);
     Route::delete('/item/{id}', [ItemController::class, 'destroy']);
