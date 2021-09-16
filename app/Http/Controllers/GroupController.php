@@ -37,6 +37,11 @@ class GroupController extends Controller
 
     public function showAllGroups(){
         $groups = Group::all();
+        foreach($groups as $group) {
+            $groupUser  = $group->users;
+            $group-> pivot = $groupUser;
+            $group->groupItems = $group->groupitem;
+        }
         return($groups);
     }
     /**
