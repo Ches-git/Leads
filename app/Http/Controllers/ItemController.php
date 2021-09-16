@@ -19,8 +19,10 @@ class ItemController extends Controller
     }
 
     public function findTodo($id){
-        $userId = auth()->user()->id;
-        return Item::where('user_id', "=", $userId)->where('id', '=', $id);
+//        $userId = auth()->user()->id;
+        $item = Item::find($id);
+//        return Item::where('user_id', "=", $userId)->where('id', '=', $id);
+        return($item);
     }
 
     /**
