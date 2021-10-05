@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserImageController extends Controller
 {
-    public function upload(Request $request)
+    public function upload(Request $request, $id)
     {
 
 //        $path = $request->file('image')->store('image');
@@ -19,21 +19,24 @@ class UserImageController extends Controller
 
 //        try {
 //        if ($request->hasFile('image')) {
-            $file = ($request->file('image'));
-            $file_name = $file->getClientOriginalName();
-            $file->move(public_path('userImages'), $file_name);
-            $file_path = '/userImages/'.$file_name;
+        $file = ($request->file('image'));
+        $file_name = $file->getClientOriginalName();
+        $file->move(public_path('userImages'), $file_name);
+        $file_path = '/userImages/' . $file_name;
+
+        if ($id == 0) {
             $id = auth()->user()->id;
-            $user = User::find($id);
-////
-                if ( $user ){
-                    $user->image_name = $file_name;
-                    $user->file_path = $file_path;
-                    $user->save();
-                }
-            return response()->json([
-                'message' => 'Image uploaded successfully'
-            ], 200);
+        }
+        $user = User::find($id);
+
+        if ($user) {
+            $user->image_name = $file_name;
+            $user->file_path = $file_path;
+            $user->save();
+        }
+        return response()->json([
+            'message' => 'Image uploaded successfully'
+        ], 200);
 //
 //            }
 //        } catch (\Exception $exception){
@@ -42,15 +45,16 @@ class UserImageController extends Controller
 //            ]);
 //             }
 //        }
-         }
-        public function getImage()
-        {
-            $id = auth()->user()->id;
-
-            $user = User::find($id);
-            $path = $user->file_path;
-              return $path;
-
-        }
     }
+
+    public function getImage()
+    {
+        $id = auth()->user()->id;
+
+        $user = User::find($id);
+        $path = $user->file_path;
+        return $path;
+
+    }
+}
 

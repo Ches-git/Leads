@@ -53,19 +53,34 @@ class AuthController extends Controller
         return response()->json('Logged out successfully', 200);
     }
 
-    public function update(Request $request ){
-        $id = auth()->user()->id;
+    public function update(Request $request, $id)
+    {
+        if ($id == 0) {
+            $id = auth()->user()->id;
+        }
+
         $user = User::find($id);
 
         if ($user) {
-            $user->email = $request->item['email'];
-            $user->position = $request->item["position"];
-            $user->about = $request->item["about"];
-            $user->name = $request->item["name"];
-//            $user->description = $request->item['description'];
+            $user->access_level = $request->user['access_level'];
+            $user->email = $request->user['email'];
+            $user->position = $request->user["position"];
+            $user->about = $request->user["about"];
+            $user->name = $request->user["name"];
             $user->save();
             return $user;
         }
 
+    }
+
+    public function index($id)
+    {
+        return User::find($id);
+    }
+
+    public function destroy($id){
+        $user = User::find($id);
+        $user->delete();
+        return 'Deleted successfully';
     }
 }

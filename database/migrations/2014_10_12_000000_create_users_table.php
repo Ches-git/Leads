@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('position')->default('')->nullable();
             $table->string('about')->default('')->nullable();
             $table->string('image_name')->default('')->nullable();
+            $table->string('access_level')->default('')->nullable();
             $table->string('file_path')->default('/userImages/Default.png')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

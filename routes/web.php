@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/{any}', function (){
     return File::get(public_path() . '/index.html');
 })->where('any', '^(?!api).*$');
+
+Route::get('/{any}', function (){
+    return File::get(public_path() . '/index.html');
+})->where('any', '.*');
